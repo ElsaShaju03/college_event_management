@@ -10,3 +10,6 @@ yarn-debug.log*
 
 # React build
 client/build/
+
+# Uploaded files
+server/uploads/

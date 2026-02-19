@@ -19,7 +19,7 @@ const upload = multer({ storage: storage });
 // 2. CREATE: Add a new event
 router.post('/add', upload.single('image'), async (req, res) => {
     try {
-        const { title, description, date, venue, category, organizer, registrationLink } = req.body;
+        const { title, description, date, venue, category, organizer, registrationLink, registrationDeadline } = req.body;
         
         const newEvent = new Event({
             title,
@@ -29,7 +29,7 @@ router.post('/add', upload.single('image'), async (req, res) => {
             category,
             organizer,
             registrationLink, 
-            registrationDeadline: req.body.registrationDeadline,
+            registrationDeadline, // Corrected
             image: req.file ? req.file.filename : '', 
             status: 'Pending'
         });
@@ -51,7 +51,7 @@ router.get('/all', async (req, res) => {
     }
 });
 
-// 4. READ: Get single event details (Needed for the Edit form)
+// 4. READ: Get single event details
 router.get('/:id', async (req, res) => {
     try {
         const event = await Event.findById(req.params.id);
@@ -65,12 +65,19 @@ router.get('/:id', async (req, res) => {
 // 5. UPDATE: Update event details
 router.put('/update/:id', upload.single('image'), async (req, res) => {
     try {
-        const { title, description, date, venue, category, organizer, registrationLink } = req.body;
+        const { title, description, date, venue, category, organizer, registrationLink, registrationDeadline } = req.body;
         
-        // Prepare update object
-        let updateData = { title, description, date, venue, category, organizer, registrationLink };
+        let updateData = { 
+            title, 
+            description, 
+            date, 
+            venue, 
+            category, 
+            organizer, 
+            registrationLink, 
+            registrationDeadline // Added to update logic
+        };
 
-        // If a new image is uploaded, update the image field
         if (req.file) {
             updateData.image = req.file.filename;
         }
@@ -78,7 +85,7 @@ router.put('/update/:id', upload.single('image'), async (req, res) => {
         const updatedEvent = await Event.findByIdAndUpdate(
             req.params.id, 
             updateData, 
-            { new: true } // Returns the updated document
+            { new: true } 
         );
 
         res.json({ msg: "Event updated successfully", event: updatedEvent });
