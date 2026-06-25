@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  # 1. The Database (Docker will download this automatically)
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  # 2. The Backend (Uses the Dockerfile inside /server)
+  backend:
+    build: ./server
+    ports:
+      - "5000:5000"
+    environment:
+      - PORT=5000
+      - MONGO_URI=mongodb://mongodb:27017/eventDB
+      - JWT_SECRET=yoursecretkey123
+    depends_on:
+      - mongodb
+
+  # 3. The Frontend (Uses the Dockerfile inside /client)
+  frontend:
+    build: ./client
+    ports:
+      - "3000:3000"
+    stdin_open: true # Keeps the React app running
+    depends_on:
+      - backend
+
+volumes:
+  mongo-data:
