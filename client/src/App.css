@@ -1,0 +1,25 @@
+.App {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Global transitions for smoother UI interaction */
+* {
+  transition: background-color 0.3s ease;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Global Link Reset */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Root variables for the orange/yellow accent described */
+:root {
+  --accent-color: #ff9800;
+  --dark-bg: #111111;
+}

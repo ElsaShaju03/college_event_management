@@ -1,0 +1,105 @@
+/* Container for the form box within the admin content area */
+.create-event-section {
+    background: #111;
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid #333;
+    max-width: 850px; /* Limits width for better readability */
+    margin-top: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.admin-event-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Row layout for Title/Category and Date/Venue */
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+/* Individual field group */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1; /* Makes inputs in a row equal width */
+}
+
+.form-group label {
+    font-size: 14px;
+    color: #ff9800; /* Orange Accent */
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Input, Select, and Textarea styling */
+.admin-event-form input, 
+.admin-event-form textarea, 
+.admin-event-form select {
+    padding: 14px;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    color: white;
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+    transition: 0.3s;
+}
+
+/* Hover and Focus effects */
+.admin-event-form input:focus, 
+.admin-event-form textarea:focus,
+.admin-event-form select:focus {
+    border-color: #ff9800;
+    background: #222;
+}
+
+/* Specific styling for the description box */
+.admin-event-form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* The primary Publish button */
+.admin-submit-btn {
+    background: #ff9800;
+    color: white;
+    padding: 16px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.admin-submit-btn:hover {
+    background: #e68a00;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 152, 0, 0.3);
+}
+
+/* Style for the select dropdown arrow */
+.admin-event-form select {
+    cursor: pointer;
+    appearance: none; /* Removes default browser styling */
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 15px;
+}
+
+/* Responsive fix: Stack rows on small screens */
+@media (max-width: 600px) {
+    .form-row {
+        flex-direction: column;
+    }
+}

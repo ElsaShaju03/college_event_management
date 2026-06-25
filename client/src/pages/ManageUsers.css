@@ -1,0 +1,9 @@
+.manage-users-page { padding: 40px; background: #0a0a0a; min-height: 100vh; color: white; }
+.user-table { width: 100%; border-collapse: collapse; margin-top: 20px; background: #1a1a1a; border-radius: 10px; overflow: hidden; }
+.user-table th, .user-table td { padding: 15px; text-align: left; border-bottom: 1px solid #333; }
+.user-table th { background: #222; color: #ff9800; }
+.status-pill { padding: 4px 10px; border-radius: 20px; font-size: 12px; }
+.active { background: rgba(68, 255, 68, 0.2); color: #44ff44; }
+.inactive { background: rgba(255, 68, 68, 0.2); color: #ff4444; }
+.user-table select { background: #252525; color: white; border: 1px solid #444; padding: 5px; border-radius: 5px; }
+.btn-toggle { background: none; border: none; cursor: pointer; }
