@@ -1,6 +1,5 @@
-name: Project Build Check
+name: CI/CD Docker Build Check
 
-# 1. When should this run? (On every push to the 'main' branch)
 on:
   push:
     branches: [ main ]
@@ -8,18 +7,17 @@ on:
     branches: [ main ]
 
 jobs:
-  build-and-test:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-    # 2. Download the code from your repository
+    # 1. UPDATED TO v4: This fixes the 'Node.js 20/24' and 'Exit code 128' errors
     - name: Checkout Code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
-    # 3. Try to build the Docker containers
+    # 2. Build the Docker containers
     - name: Build Docker Images
       run: docker compose build
 
-    # 4. Success message
-    - name: Status Check
-      run: echo "Build successful! Your containers are production-ready."
+    - name: Final Status
+      run: echo "Build successful! Your MERN stack is production-ready."
